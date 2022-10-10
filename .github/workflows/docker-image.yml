@@ -16,6 +16,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: Pull the Docker image
       run: docker pull mcr.microsoft.com/dotnet/framework/aspnet:4.8.1
+      
+    - uses: actions/checkout@v3
+    - name: tag the Docker image
+      run: docker tag mcr.microsoft.com/dotnet/framework/aspnet:4.8.1  rizzkhan1/aspnet:4.8.1
 
     -
       name: Login to Docker Hub
@@ -23,3 +27,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - uses: actions/checkout@v3
+    - name: tag the Docker image
+      run: docker push  rizzkhan1/aspnet:4.8.1
